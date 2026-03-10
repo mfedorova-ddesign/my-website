@@ -42,16 +42,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Background echoes photo: dark base + subtle warm (city lights) and green (jacket) */
+/* Background: dark, neutral grey/black gradient with very gentle light center */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 100% 80% at 85% 20%, var(--photo-warm) 0%, transparent 50%),
-    radial-gradient(ellipse 70% 60% at 15% 60%, var(--photo-green) 0%, transparent 45%),
-    var(--bg);
+    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 70%),
+    linear-gradient(150deg, #060606 0%, #101010 45%, #171717 100%);
   pointer-events: none;
 }
 
@@ -267,6 +266,7 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0.75;
 }
 
 .photo-fallback {
@@ -406,8 +406,13 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .cv-block {
-  margin-bottom: var(--space-xl);
+  margin-bottom: 0;
 }
+
+.cv-block + .cv-block {
+  margin-top: var(--space-xl);
+}
+
 .cv-block h3 {
   font-family: var(--serif);
   font-size: 1.25rem;
@@ -423,6 +428,12 @@ img { max-width: 100%; height: auto; display: block; }
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .cv-item:last-child { border-bottom: none; }
+
+/* Visually align gap between Experience → Education with right column blocks */
+.cv-column-main .cv-block:first-of-type .cv-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 
 .cv-item-header {
   display: flex;
